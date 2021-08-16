@@ -1,9 +1,14 @@
 export class Part {
+
     constructor(
         private _name: string,
         private _price: number,
         private _quantity: number,
     ) {
+    }
+
+    get name(): string {
+        return this._name;
     }
 
     get price(): number {
@@ -20,4 +25,9 @@ export class Part {
     get quantity(): number{
         return this._quantity;
     }
+
+    set quantity(value: number) {
+        this._quantity = value;
+    }
+
 }

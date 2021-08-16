@@ -3,7 +3,7 @@ import {Part} from "./Part";
 export class InteriorPart extends Part{
 
     constructor(
-        name:string,
+        name: string,
         price: number,
         quantity: number,
         private material: string,
