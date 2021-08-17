@@ -15,6 +15,7 @@ export class Shop {
         } else {
             this._capital -= (part.price * part.quantity);
             this._boughtParts.push(part);
+            console.log(`You have on stock ${part.quantity}px of ${part.name} `)
         }
     }
 
@@ -43,12 +44,24 @@ export class Shop {
                     part.quantity -= qty;
                     console.log(part.quantity);
                     console.log(`Your shop have ${this._capital}`);
-                    console.log(`Your profit is ${profit}`)
+                    console.log(`Your profit is ${profit}`);
+                    console.log(`You have ${part.quantity} remaining quantity of ${partName}!`);
+                    console.log('You sell like a monster dude!!!');
+                    if(part.quantity<=0){
+                        this._boughtParts.splice(i - 1, 1);
+                        console.log(`The quantity of ${partName} is over`)
+                        console.log(`Array of parts includes ${this._boughtParts}`)
+                    }
                 }
 
 
             } else if (partName !== part.name) {
-                console.log('Nqma v sklada brat!')
+                let counter = 0;
+                counter ++;
+                if (counter===this._boughtParts.length){
+                    console.log('Nqma v sklada brat!');
+                }
+                // console.log('Nqma v sklada brat!')
             }
         }
 

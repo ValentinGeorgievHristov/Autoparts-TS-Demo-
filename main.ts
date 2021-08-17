@@ -49,8 +49,20 @@ const shop = new Shop(10000);
 // ---------------------------------------------------
 //             console.log(shop)
 
-            shop.sellPart('radio', 50)
+            // shop.sellPart('radio', 50)
             // console.log(`The store have cash ${shop.capital}`);
+        }else if(cmd==="SellPart"){
+            // const partForSale = cmdParts[1];
+            // const qty:number = cmdParts[2];
+            // shop.sellPart(partForSale, qty)
+            const part = new InteriorPart(
+                cmdParts[2],
+                parseFloat(cmdParts[3]),
+                parseInt(cmdParts[4]),
+                cmdParts[5],
+                cmdParts[6] === 'Yes'
+            )
+            shop.sellPart(cmdParts[2], parseInt(cmdParts[4]))
         }
     }
 })()
