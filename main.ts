@@ -9,8 +9,7 @@ const sportSeat = new InteriorPart('seat', 30, 2, 'leather', false);
 const phoneHolder = new InteriorPart('phoneHolder', 3,4, 'plastic', false);
 
 const engineFlywheel = new EngineSuspensionPart('flywheel', 500, 1, 'engine & clutch', '7kg', 'crankshaft');
-
-const shop = new Shop(10000);
+const shop = new Shop(10000 );
 
 // const line = "BuyPart INTERIOR Radio 20 5 plastic Yes";
 // const line1 = "BuyPart INTERIOR Radio 20 5 plastic Yes";
@@ -63,6 +62,7 @@ const shop = new Shop(10000);
                 cmdParts[6] === 'Yes'
             )
             shop.sellPart(cmdParts[2], parseInt(cmdParts[4]))
+
         }
     }
 })()

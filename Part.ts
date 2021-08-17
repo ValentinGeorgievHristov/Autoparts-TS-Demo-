@@ -5,6 +5,7 @@ export class Part {
         private _price: number,
         private _quantity: number,
     ) {
+
     }
 
     get name(): string {
