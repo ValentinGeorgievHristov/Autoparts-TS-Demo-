@@ -5,11 +5,11 @@ import { Shop } from './Shop';
 
 
 const radio = new InteriorPart('radio', 20, 5, 'plastic', true);
-const sportSeat = new InteriorPart('seat', 30, 2, 'leather', false);
-const phoneHolder = new InteriorPart('phoneHolder', 3,4, 'plastic', false);
 
 const engineFlywheel = new EngineSuspensionPart('flywheel', 500, 1, 'engine & clutch', '7kg', 'crankshaft');
+
 const shop = new Shop(10000 );
+const shopCore = new Shop(10000 );
 
 // const line = "BuyPart INTERIOR Radio 20 5 plastic Yes";
 // const line1 = "BuyPart INTERIOR Radio 20 5 plastic Yes";
@@ -29,9 +29,9 @@ const shop = new Shop(10000 );
 
         const cmdParts: string[] = line.split(" ");
         const cmd = cmdParts[0];
-
+        const partType = cmdParts[1];
         if (cmd === 'BuyPart') {
-            const partType = cmdParts[1];
+            // const partType = cmdParts[1];
             if (partType === 'INTERIOR') {
                 const part = new InteriorPart(
                     cmdParts[2],
@@ -43,19 +43,8 @@ const shop = new Shop(10000 );
                 )
                 shop.buyPart(part,  parseInt(cmdParts[4]));
             }
-            // shop.showObjName()
-            // console.log(`The store have cash ${shop.capital}`);
-// ---------------------------------------------------
-//             console.log(shop)
-
-            // console.log(`The store have cash ${shop.capital}`);
-        }else if(cmd==="SellPart"){
-            // const partForSale = cmdParts[1]; ?
-            // const qty:number = cmdParts[2];
-            // shop.sellPart(partForSale, qty) ??
-
-            shop.sellPart(cmdParts[2], parseInt(cmdParts[3]))
-
+        }else if(cmd==="SellPart" && partType == "INTERIOR"){
+                      shop.sellPart(cmdParts[2], parseInt(cmdParts[3]));
         }
     }
 
