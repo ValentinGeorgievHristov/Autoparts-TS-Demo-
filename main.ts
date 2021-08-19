@@ -1,15 +1,16 @@
 import {InteriorPart} from './InteriorPart';
 import {EngineSuspensionPart} from './Engine&SuspensionPart';
-import {ConsumableItem} from './ConsumableItem';
-import { Shop } from './Shop';
+import {Shop} from './Shop';
+import {ConsumableItem} from "./ConsumableItem";
 
 
 const radio = new InteriorPart('radio', 20, 5, 'plastic', true);
 
 const engineFlywheel = new EngineSuspensionPart('flywheel', 500, 1, 'engine & clutch', '7kg', 'crankshaft');
 
-const shop = new Shop(10000 );
-const shopCore = new Shop(10000 );
+const interiorShop = new Shop(10000);
+const shopCore = new Shop(10000);
+const consumableShop = new Shop(10000);
 
 // const line = "BuyPart INTERIOR Radio 20 5 plastic Yes";
 // const line1 = "BuyPart INTERIOR Radio 20 5 plastic Yes";
@@ -39,13 +40,33 @@ const shopCore = new Shop(10000 );
                     parseInt(cmdParts[4]),
                     cmdParts[5],
                     cmdParts[6] === 'Yes'
-
                 )
-                shop.buyPart(part,  parseInt(cmdParts[4]));
+                interiorShop.buyPart(part, parseInt(cmdParts[4]));
+            } else if (partType === 'CORE') {
+                const part = new EngineSuspensionPart(
+                    cmdParts[2], //име част
+                    parseInt(cmdParts[3]),  //, цена
+                    parseInt(cmdParts[4]),             //предназначение
+                    cmdParts[5],             // маса
+                    cmdParts[6],              //свързани
+                    cmdParts[7],
+                )
+                shopCore.buyPart(part, parseInt(cmdParts[4]));
+            }else if(partType === 'CONSUMABLE'){
+                const part = new ConsumableItem(
+                    cmdParts[2], //име част
+                    parseInt(cmdParts[3]),
+                    parseInt(cmdParts[4]),
+                          cmdParts[5],
+                )
+                consumableShop.buyPart(part, parseInt(cmdParts[4]));
             }
-        }else if(cmd==="SellPart" && partType == "INTERIOR"){
-                      shop.sellPart(cmdParts[2], parseInt(cmdParts[3]));
+        } else if (cmd === "SellPart" && partType == "INTERIOR") {
+            interiorShop.sellPart(cmdParts[2], parseInt(cmdParts[3]));
+        } else if (cmd === "SellPart" && partType == "CORE") {
+            shopCore.sellPart(cmdParts[2], parseInt(cmdParts[3]));
+        } else if (cmd === "SellPart" && partType == "CONSUMABLE") {
+            consumableShop.sellPart(cmdParts[2], parseInt(cmdParts[3]));
         }
     }
-
 })()

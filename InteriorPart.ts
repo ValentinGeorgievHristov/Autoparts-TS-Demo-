@@ -6,8 +6,8 @@ export class InteriorPart extends Part{
         name:string,
         price: number,
         quantity: number,
-        private material: string,
-        private fragile: boolean,
+        private _material: string,
+        private _fragile: boolean,
     ) {
         super(name, price, quantity);
     }

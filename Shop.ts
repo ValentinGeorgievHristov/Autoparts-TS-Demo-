@@ -13,11 +13,11 @@ export class Shop {
         return this._capital;
     }
 
-    public showObjName() {
-        for (let i = 0; i < this._boughtParts.length; i++) {
-            // console.log(`ObjName !!!!!!!!!!!!!!!!: ${this._boughtParts[i].name}`)
-        }
-    }
+    // public showObjName() {
+    //     for (let i = 0; i < this._boughtParts.length; i++) {
+    //         // console.log(`ObjName !!!!!!!!!!!!!!!!: ${this._boughtParts[i].name}`)
+    //     }
+    // }
 
     public buyPart(part: Part, qty: number) {
         if (this._capital < part.price * qty) {

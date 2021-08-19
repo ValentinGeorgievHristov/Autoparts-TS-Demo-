@@ -3,11 +3,10 @@ import {Part} from "./Part";
 export class ConsumableItem extends Part{
 
     constructor(
-        name:string,
+        name: string,
         price: number,
         quantity: number,
-        // private quantity1: number,
-        private expiryDate: number,
+        private _expiryDate: string,
     ) {
         super(name, price, quantity);
     }
