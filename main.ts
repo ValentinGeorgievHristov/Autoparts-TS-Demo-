@@ -12,12 +12,6 @@ const interiorShop = new Shop(10000);
 const shopCore = new Shop(10000);
 const consumableShop = new Shop(10000);
 
-// const line = "BuyPart INTERIOR Radio 20 5 plastic Yes";
-// const line1 = "BuyPart INTERIOR Radio 20 5 plastic Yes";
-// const line2 = "BuyPart INTERIOR Radio 20 5 plastic Yes";
-// const line3 = "BuyPart INTERIOR Radio 20 5 plastic Yes";
-//
-// const lines = [line, line1, line2, line3];
 
 (async () => {
     const readline = require('readline');
@@ -57,7 +51,7 @@ const consumableShop = new Shop(10000);
                     cmdParts[2], //име част
                     parseInt(cmdParts[3]),
                     parseInt(cmdParts[4]),
-                          cmdParts[5],
+                    new Date(cmdParts[5])
                 )
                 consumableShop.buyPart(part, parseInt(cmdParts[4]));
             }

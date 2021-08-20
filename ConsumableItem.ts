@@ -6,7 +6,7 @@ export class ConsumableItem extends Part{
         name: string,
         price: number,
         quantity: number,
-        private _expiryDate: string,
+        private _expiryDate: Date,
     ) {
         super(name, price, quantity);
     }
