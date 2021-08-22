@@ -4,6 +4,7 @@ export class Part {
         private _name: string,
         private _price: number,
         private _quantity: number,
+        // private _deliveryCounter: number = 0, //?
     ) {
 
     }
@@ -30,5 +31,7 @@ export class Part {
     set quantity(value: number) {
         this._quantity = value;
     }
+
+
 
 }

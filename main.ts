@@ -4,9 +4,9 @@ import {Shop} from './Shop';
 import {ConsumableItem} from "./ConsumableItem";
 
 
-const radio = new InteriorPart('radio', 20, 5, 'plastic', true);
-
-const engineFlywheel = new EngineSuspensionPart('flywheel', 500, 1, 'engine & clutch', '7kg', 'crankshaft');
+// const radio = new InteriorPart('radio', 20, 5, 'plastic', true);
+//
+// const engineFlywheel = new EngineSuspensionPart('flywheel', 500, 1, 'engine & clutch', '7kg', 'crankshaft');
 
 const interiorShop = new Shop(10000);
 const shopCore = new Shop(10000);
@@ -61,6 +61,18 @@ const consumableShop = new Shop(10000);
             shopCore.sellPart(cmdParts[2], parseInt(cmdParts[3]));
         } else if (cmd === "SellPart" && partType == "CONSUMABLE") {
             consumableShop.sellPart(cmdParts[2], parseInt(cmdParts[3]));
+        }
+
+
+        let partName = cmdParts[2];
+        let propertiesOrAll = cmdParts[3];
+
+        if(cmd === "GetPartInfo" && partType == "INTERIOR" ){
+            console.log(interiorShop.getPartInfo(partName, propertiesOrAll, partType));
+        }else if(cmd === "GetPartInfo" && partType == "CORE"){
+            console.log(shopCore.getPartInfo(partName, propertiesOrAll, partType));
+        }else if(cmd === "GetPartInfo" && partType == "CONSUMABLE"){
+            console.log(consumableShop.getPartInfo(partName, propertiesOrAll, partType));
         }
     }
 })()

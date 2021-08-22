@@ -1,5 +1,6 @@
 import {Part} from "./Part";
 
+
 export class Shop {
 
     private _boughtParts: Part[] = [];
@@ -12,12 +13,6 @@ export class Shop {
     get capital(): number {
         return this._capital;
     }
-
-    // public showObjName() {
-    //     for (let i = 0; i < this._boughtParts.length; i++) {
-    //         // console.log(`ObjName !!!!!!!!!!!!!!!!: ${this._boughtParts[i].name}`)
-    //     }
-    // }
 
     public buyPart(part: Part, qty: number) {
         if (this._capital < part.price * qty) {
@@ -64,17 +59,95 @@ export class Shop {
                     console.log(`We need ${qty - part.quantity} more availability to sell this part`);
                 }
 
-            } else{
-                     console.log('This part does not exist in your store!');  // Допълнение...
+            } else {
+                console.log('This part does not exist in your store!');  // Допълнение...
             }
         }
+    }
+
+    public getPartInfo(partName: string, propertiesOrAll: string, classType: string): string {
+        let index = this._boughtParts.indexOf(this.findPartByName(partName));
+        let part = this._boughtParts[index];
+        let result = '';
+        switch (propertiesOrAll){
+            case 'all':
+                return `The part ${this._boughtParts[index].name} with those properties ${this._boughtParts[index].toString()}`
+            default:
+        }
+
+
+
+        // if (propertiesOrAll === "all") {
+        //  return `The part ${this._boughtParts[index].name} with those properties ${this._boughtParts[index].toString()}`
+        // } //else
+        if (classType === "INTERIOR") {
+            switch (propertiesOrAll) {
+                case 'price':
+                    result = `The ${part.name} cost ${part.price.toString()} for pcs`;
+                    return result;
+                case 'quantity':
+                    result = `We have ${part.quantity.toString()}qty of ${part.name} in our warehouse`
+                    return result
+                // case 'material':
+                //     return part.material.toString()
+                // case 'fragile':
+                //     return part.fragile.toString()
+                default:
+                    return 'INTERIOR'
+            }
+            throw new Error('ERROR INTERIOR!!!!')
+        } else if (classType === "CORE") {
+            switch (propertiesOrAll) {
+                case 'price':
+                    result = `The ${part.name} cost ${part.price.toString()} for pcs`;
+                    return result;
+                case 'quantity':
+                    result = `We have ${part.quantity.toString()}qty of ${part.name} in our warehouse`
+                    return result;
+                case 'purpose':
+                //     return part.purpose.toString()
+                // case 'weight':
+                //     return part.weight.toString()
+                // case 'connectedWith':
+                //     return part.connectedWith.toString()
+                default:
+                    return 'CORE'
+            }
+            throw new Error('ERROR!!!!')
+        } else if (classType === "CONSUMABLE") {
+
+            switch (propertiesOrAll) {
+                case 'price':
+                    result = `The ${part.name} cost ${part.price.toString()} for pcs`;
+                    return result;
+                case 'quantity':
+                    result = `We have ${part.quantity.toString()}qty of ${part.name} in our warehouse`
+                    return result;
+                // case 'expiryDate':
+                //     return part.expiryDate.toString()
+                default:
+                    return 'CONSUMABLE'
+            }
+            throw new Error('ERROR CONSUMABLE!!!!')
+        }
+        throw new Error('ERROR!!!!')
+    }
+
+
+    private findPartByName(partName: string): Part {
+        for (let i = 0; i < this._boughtParts.length; i++) {
+            if (partName === this._boughtParts[i].name) {
+                return this._boughtParts[i];
+            }
+        }
+        throw new Error("Nqma takava chast")
     }
 
     private calculateQuantityAndCapital(price: number, quantity: number): number {
         return this._capital -= price * quantity
     }
 
-    ///////true ако съществува в масива (трябва да вдигнеш quantity) и false ако не (трябва да я добавиш)
+///////true ако съществува в масива (трябва да вдигнеш quantity) и false ако не (трябва да я добавиш)
     private isItemExist(part: Part): boolean {
         let itemExist: boolean = false;
 
@@ -87,5 +160,6 @@ export class Shop {
 
         return itemExist;
     }
+
 }
 
